@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController
+
+@interface DetailViewController : UIViewController {
+    NSString *paste;
+    NSMutableData *data;
+}
 
 @property (strong, nonatomic) id detailItem;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UITextView *detailTextView;
+@property (strong, nonatomic) NSString *pasteID;
 
 @end
 
