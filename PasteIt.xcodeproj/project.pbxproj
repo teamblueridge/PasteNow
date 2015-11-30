@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B909B2541C0BFB7E00282353 /* btnCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = B909B24E1C0BFB7E00282353 /* btnCheck.png */; };
+		B909B2551C0BFB7E00282353 /* btnCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B909B24F1C0BFB7E00282353 /* btnCheck@2x.png */; };
+		B909B2561C0BFB7E00282353 /* HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B909B2511C0BFB7E00282353 /* HUD.m */; };
+		B909B2571C0BFB7E00282353 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B909B2531C0BFB7E00282353 /* MBProgressHUD.m */; };
 		B9C92EA51C093E1300A61A82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C92EA41C093E1300A61A82 /* main.m */; };
 		B9C92EA81C093E1300A61A82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C92EA71C093E1300A61A82 /* AppDelegate.m */; };
 		B9C92EAB1C093E1300A61A82 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C92EAA1C093E1300A61A82 /* MasterViewController.m */; };
@@ -36,6 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B909B24E1C0BFB7E00282353 /* btnCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnCheck.png; sourceTree = "<group>"; };
+		B909B24F1C0BFB7E00282353 /* btnCheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCheck@2x.png"; sourceTree = "<group>"; };
+		B909B2501C0BFB7E00282353 /* HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUD.h; sourceTree = "<group>"; };
+		B909B2511C0BFB7E00282353 /* HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUD.m; sourceTree = "<group>"; };
+		B909B2521C0BFB7E00282353 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		B909B2531C0BFB7E00282353 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		B9C92EA01C093E1300A61A82 /* PasteIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C92EA41C093E1300A61A82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B9C92EA61C093E1300A61A82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -81,9 +91,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B909B24D1C0BFB7E00282353 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				B909B24E1C0BFB7E00282353 /* btnCheck.png */,
+				B909B24F1C0BFB7E00282353 /* btnCheck@2x.png */,
+				B909B2501C0BFB7E00282353 /* HUD.h */,
+				B909B2511C0BFB7E00282353 /* HUD.m */,
+				B909B2521C0BFB7E00282353 /* MBProgressHUD.h */,
+				B909B2531C0BFB7E00282353 /* MBProgressHUD.m */,
+			);
+			name = HUD;
+			path = PasteIt/HUD;
+			sourceTree = "<group>";
+		};
 		B9C92E971C093E1300A61A82 = {
 			isa = PBXGroup;
 			children = (
+				B909B24D1C0BFB7E00282353 /* HUD */,
 				B9C92EA21C093E1300A61A82 /* PasteIt */,
 				B9C92EBF1C093E1300A61A82 /* PasteItTests */,
 				B9C92ECA1C093E1300A61A82 /* PasteItUITests */,
@@ -248,7 +273,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B909B2551C0BFB7E00282353 /* btnCheck@2x.png in Resources */,
 				B9C92EB61C093E1300A61A82 /* LaunchScreen.storyboard in Resources */,
+				B909B2541C0BFB7E00282353 /* btnCheck.png in Resources */,
 				B9C92EB31C093E1300A61A82 /* Assets.xcassets in Resources */,
 				B9C92EB11C093E1300A61A82 /* Main.storyboard in Resources */,
 			);
@@ -275,6 +302,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B909B2561C0BFB7E00282353 /* HUD.m in Sources */,
+				B909B2571C0BFB7E00282353 /* MBProgressHUD.m in Sources */,
 				B9C92EA81C093E1300A61A82 /* AppDelegate.m in Sources */,
 				B9C92EAB1C093E1300A61A82 /* MasterViewController.m in Sources */,
 				B9C92EA51C093E1300A61A82 /* main.m in Sources */,
@@ -419,10 +448,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = PasteIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simonsickle.PasteIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PasteIt/PasteIt-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -430,10 +462,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = PasteIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simonsickle.PasteIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PasteIt/PasteIt-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -504,6 +538,7 @@
 				B9C92ED21C093E1300A61A82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B9C92ED31C093E1300A61A82 /* Build configuration list for PBXNativeTarget "PasteItTests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +547,7 @@
 				B9C92ED51C093E1300A61A82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B9C92ED61C093E1300A61A82 /* Build configuration list for PBXNativeTarget "PasteItUITests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +556,7 @@
 				B9C92ED81C093E1300A61A82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

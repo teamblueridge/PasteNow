@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#include "HUD.h"
 
 @interface MasterViewController ()
 
@@ -16,17 +17,22 @@
 
 @implementation MasterViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (!recents)
+    {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [HUD showUIBlockingIndicatorWithText:@"Downloading Pastes"];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view, typically from a nib.
-//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-//
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-//    self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-    // Test code
+    
     NSString *url = @"https://paste.teamblueridge.org/api/recent/?apikey=teamblueridgepaste";
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:url]
@@ -34,10 +40,11 @@
                                 NSURLResponse *response,
                                 NSError *error) {
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                // Handle the response here
                 recents = [NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
-
-                [self.tableView reloadData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [HUD hideUIBlockingIndicator];
+                    [self.tableView reloadData];
+                });
       }] resume];
 
     
@@ -77,9 +84,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-//
-//    NSDate *object = self.objects[indexPath.row];
-//    cell.textLabel.text = [object description];
     
     cell.textLabel.text = [[recents objectAtIndex:indexPath.row] objectForKey:@"title"];
     
@@ -87,7 +91,6 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
     return NO;
 }
 
