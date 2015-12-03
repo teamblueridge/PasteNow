@@ -12,7 +12,6 @@
 
 @interface MasterViewController : UITableViewController {
     NSArray *recents;
-    NSMutableData *data;
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;

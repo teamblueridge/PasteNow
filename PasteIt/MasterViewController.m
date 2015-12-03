@@ -40,7 +40,7 @@
                                 NSURLResponse *response,
                                 NSError *error) {
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                recents = [NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
+                recents = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [HUD hideUIBlockingIndicator];
                     [self.tableView reloadData];

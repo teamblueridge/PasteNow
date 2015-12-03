@@ -11,7 +11,7 @@
 
 @interface DetailViewController : UIViewController {
     NSString *paste;
-    NSMutableData *data;
+//    NSMutableData *data;
 }
 
 @property (strong, nonatomic) id detailItem;

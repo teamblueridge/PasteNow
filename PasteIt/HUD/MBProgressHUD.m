@@ -352,7 +352,9 @@
     // Add label if label text was set
     if (nil != self.labelText) {
         // Get size of label text
-        CGSize dims = [self.labelText sizeWithFont:self.labelFont];
+        NSDictionary *fontWithAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize: 14]};
+        
+        CGSize dims = [self.labelText sizeWithAttributes:fontWithAttributes];
 		
         // Compute label dimensions based on font metrics if size is larger than max then clip the label width
         float lHeight = dims.height;
@@ -398,14 +400,21 @@
             detailsLabel.font = self.detailsLabelFont;
             detailsLabel.adjustsFontSizeToFitWidth = NO;
             detailsLabel.textAlignment = NSTextAlignmentCenter;
-            detailsLabel.opaque = NO;
+            detailsLabel.opaque = YES;
             detailsLabel.backgroundColor = [UIColor clearColor];
             detailsLabel.textColor = [UIColor whiteColor];
             detailsLabel.text = self.detailsLabelText;
             detailsLabel.numberOfLines = 0;
 
 			CGFloat maxHeight = frame.size.height - self.height - 2*margin;
-			CGSize labelSize = [detailsLabel.text sizeWithFont:detailsLabel.font constrainedToSize:CGSizeMake(frame.size.width - 4*margin, maxHeight) lineBreakMode:detailsLabel.lineBreakMode];
+            
+            NSDictionary *fontWithAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize: 14]};
+            CGRect boundingRect = [detailsLabel.text boundingRectWithSize:CGSizeMake(frame.size.width - 4*margin, maxHeight)
+                                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                                 attributes:fontWithAttributes
+                                                                    context:nil];
+            CGSize labelSize = boundingRect.size;
+//			CGSize labelSize = [detailsLabel.text sizeWithAttributes:fontWithAttributes constrainedToSize:CGSizeMake(frame.size.width - 4*margin, maxHeight) lineBreakMode:NSLineBreakByWordWrapping];
             lHeight = labelSize.height;
             lWidth = labelSize.width;
 			
