@@ -34,9 +34,9 @@
         [[session2 dataTaskWithURL:[NSURL URLWithString:url]
                  completionHandler:^(NSData *data, NSURLResponse *response,NSError *error) {
                      [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
+                     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                      
-                     paste = [json objectForKey:@"paste"];
+                     paste = [json objectForKey:@"raw"];
                      dispatch_async(dispatch_get_main_queue(), ^{
                          self.detailTextView.text = paste;
                          [HUD hideUIBlockingIndicator];
