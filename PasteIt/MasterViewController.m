@@ -17,6 +17,14 @@
 
 @implementation MasterViewController
 
+- (void) addItem {
+    NSLog(@"Want to add an item");
+}
+
+- (void) showHistory {
+    NSLog(@"History for User");
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
@@ -30,24 +38,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Add a button to create pastes
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem)];
+    self.navigationItem.rightBarButtonItem = addButton;
+    UIBarButtonItem *historyButton = [[UIBarButtonItem alloc] initWithTitle:@"History" style:UIBarButtonItemStylePlain target:self action:@selector(showHistory)];
+    self.navigationItem.leftBarButtonItem = historyButton;
+    
+    // Set up the detail view controller
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-    
+    // Download JSON
     NSString *url = @"https://paste.teamblueridge.org/api/recent/?apikey=teamblueridgepaste";
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:url]
             completionHandler:^(NSData *data,
                                 NSURLResponse *response,
                                 NSError *error) {
+                // Turn network indicator off
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                
+                // Set recents from json object
                 recents = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                
+                // Update UI in another thread
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [HUD hideUIBlockingIndicator];
                     [self.tableView reloadData];
                 });
       }] resume];
-
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,7 +75,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -69,7 +86,10 @@
         NSDate *object = self.objects[indexPath.row];
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
         [controller setDetailItem:object];
+        
+        // Set the pasteID for the detail view to grab data
         controller.pasteID =  [[recents objectAtIndex:indexPath.row] objectForKey:@"pid"];
+        
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
@@ -85,6 +105,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
+    // Set the title of the cell
     cell.textLabel.text = [[recents objectAtIndex:indexPath.row] objectForKey:@"title"];
     
     return cell;
