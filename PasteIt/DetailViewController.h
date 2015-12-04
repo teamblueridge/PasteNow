@@ -11,10 +11,14 @@
 
 @interface DetailViewController : UIViewController {
     NSString *paste;
+    NSString *author;
+    NSString *language;
 }
 
 @property (strong, nonatomic) id detailItem;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailAuthorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailLanguageLabel;
 @property (weak, nonatomic) IBOutlet UITextView *detailTextView;
 @property (strong, nonatomic) NSString *pasteID;
 
