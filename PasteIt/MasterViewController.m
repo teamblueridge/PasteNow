@@ -24,18 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem setHidesBackButton:NO animated:YES];
-    // Add a button to create pastes
-   /* UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                          target:self
-                                                          action:@selector(addItem:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    
-    UIBarButtonItem *historyButton = [[UIBarButtonItem alloc] initWithTitle:@"History"
-                                                              style:UIBarButtonItemStylePlain
-                                                              target:self
-                                                              action:@selector(showHistory:)];
-    self.navigationItem.leftBarButtonItem = historyButton;*/
     
     // Set up the detail view controller
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
