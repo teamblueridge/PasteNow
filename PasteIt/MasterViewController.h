@@ -20,4 +20,3 @@
 @property (nonatomic, retain) NSNumber *filesize;
 
 @end
-

@@ -7,11 +7,7 @@
 //
 
 #import "DetailViewController.h"
-#include "HUD.h"
-
-@interface DetailViewController ()
-
-@end
+#import "HUD.h"
 
 @implementation DetailViewController
 
@@ -37,6 +33,7 @@
                      NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                      
                      paste = [json objectForKey:@"raw"];
+                     
                      dispatch_async(dispatch_get_main_queue(), ^{
                          self.detailTextView.text = paste;
                          [HUD hideUIBlockingIndicator];
@@ -50,13 +47,11 @@
     [super viewDidLoad];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [HUD showUIBlockingIndicatorWithText:@"Downloading Paste Data"];
-    // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

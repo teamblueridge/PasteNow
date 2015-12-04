@@ -8,26 +8,13 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
-#include "HUD.h"
-
-@interface MasterViewController ()
-
-@property NSMutableArray *objects;
-@end
+#import "HistoryViewController.h"
+#import "CreateViewController.h"
+#import "HUD.h"
 
 @implementation MasterViewController
 
-- (void) addItem {
-    NSLog(@"Want to add an item");
-}
-
-- (void) showHistory {
-    NSLog(@"History for User");
-}
-
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
     if (!recents)
     {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -37,12 +24,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.navigationItem setHidesBackButton:NO animated:YES];
     // Add a button to create pastes
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem)];
+   /* UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                          target:self
+                                                          action:@selector(addItem:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    UIBarButtonItem *historyButton = [[UIBarButtonItem alloc] initWithTitle:@"History" style:UIBarButtonItemStylePlain target:self action:@selector(showHistory)];
-    self.navigationItem.leftBarButtonItem = historyButton;
+    
+    UIBarButtonItem *historyButton = [[UIBarButtonItem alloc] initWithTitle:@"History"
+                                                              style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(showHistory:)];
+    self.navigationItem.leftBarButtonItem = historyButton;*/
     
     // Set up the detail view controller
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
@@ -83,13 +76,22 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.objects[indexPath.row];
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-        [controller setDetailItem:object];
         
         // Set the pasteID for the detail view to grab data
         controller.pasteID =  [[recents objectAtIndex:indexPath.row] objectForKey:@"pid"];
         
+        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+        controller.navigationItem.leftItemsSupplementBackButton = YES;
+    } else if ([[segue identifier] isEqualToString:@"showHistory"]) {
+        // Show history
+        NSLog(@"Showing history");
+        HistoryViewController *controller = (HistoryViewController *)[[segue destinationViewController] topViewController];
+        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+        controller.navigationItem.leftItemsSupplementBackButton = YES;
+    } else if ([[segue identifier] isEqualToString:@"showCreate"]) {
+        // Show add new
+        CreateViewController *controller = (CreateViewController *)[[segue destinationViewController] topViewController];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
     }

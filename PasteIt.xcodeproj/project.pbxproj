@@ -11,6 +11,8 @@
 		B909B2551C0BFB7E00282353 /* btnCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B909B24F1C0BFB7E00282353 /* btnCheck@2x.png */; };
 		B909B2561C0BFB7E00282353 /* HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B909B2511C0BFB7E00282353 /* HUD.m */; };
 		B909B2571C0BFB7E00282353 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B909B2531C0BFB7E00282353 /* MBProgressHUD.m */; };
+		B92875081C11458B004635CF /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92875071C11458B004635CF /* HistoryViewController.m */; };
+		B928750B1C1154E1004635CF /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B928750A1C1154E1004635CF /* CreateViewController.m */; };
 		B9C92EA51C093E1300A61A82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C92EA41C093E1300A61A82 /* main.m */; };
 		B9C92EA81C093E1300A61A82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C92EA71C093E1300A61A82 /* AppDelegate.m */; };
 		B9C92EAB1C093E1300A61A82 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C92EAA1C093E1300A61A82 /* MasterViewController.m */; };
@@ -46,6 +48,10 @@
 		B909B2511C0BFB7E00282353 /* HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUD.m; sourceTree = "<group>"; };
 		B909B2521C0BFB7E00282353 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		B909B2531C0BFB7E00282353 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B92875071C11458B004635CF /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		B92875091C1145E2004635CF /* HistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		B928750A1C1154E1004635CF /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
+		B928750C1C1154EE004635CF /* CreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
 		B9C92EA01C093E1300A61A82 /* PasteIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C92EA41C093E1300A61A82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B9C92EA61C093E1300A61A82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -129,12 +135,16 @@
 		B9C92EA21C093E1300A61A82 /* PasteIt */ = {
 			isa = PBXGroup;
 			children = (
-				B9C92EA61C093E1300A61A82 /* AppDelegate.h */,
 				B9C92EA71C093E1300A61A82 /* AppDelegate.m */,
-				B9C92EA91C093E1300A61A82 /* MasterViewController.h */,
+				B9C92EA61C093E1300A61A82 /* AppDelegate.h */,
 				B9C92EAA1C093E1300A61A82 /* MasterViewController.m */,
-				B9C92EAC1C093E1300A61A82 /* DetailViewController.h */,
+				B9C92EA91C093E1300A61A82 /* MasterViewController.h */,
+				B928750A1C1154E1004635CF /* CreateViewController.m */,
+				B928750C1C1154EE004635CF /* CreateViewController.h */,
 				B9C92EAD1C093E1300A61A82 /* DetailViewController.m */,
+				B9C92EAC1C093E1300A61A82 /* DetailViewController.h */,
+				B92875071C11458B004635CF /* HistoryViewController.m */,
+				B92875091C1145E2004635CF /* HistoryViewController.h */,
 				B9C92EAF1C093E1300A61A82 /* Main.storyboard */,
 				B9C92EB21C093E1300A61A82 /* Assets.xcassets */,
 				B9C92EB41C093E1300A61A82 /* LaunchScreen.storyboard */,
@@ -306,7 +316,9 @@
 				B909B2571C0BFB7E00282353 /* MBProgressHUD.m in Sources */,
 				B9C92EA81C093E1300A61A82 /* AppDelegate.m in Sources */,
 				B9C92EAB1C093E1300A61A82 /* MasterViewController.m in Sources */,
+				B928750B1C1154E1004635CF /* CreateViewController.m in Sources */,
 				B9C92EA51C093E1300A61A82 /* main.m in Sources */,
+				B92875081C11458B004635CF /* HistoryViewController.m in Sources */,
 				B9C92EAE1C093E1300A61A82 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
