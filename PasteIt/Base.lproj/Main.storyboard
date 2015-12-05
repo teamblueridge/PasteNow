@@ -259,11 +259,13 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="iew-pr-Goy"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="7Me-sF-P87"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Recent Pastes" id="Zdf-7t-Un8">
-                        <barButtonItem key="leftBarButtonItem" title="History" id="1d6-TW-lvN"/>
+                        <barButtonItem key="leftBarButtonItem" title="History" id="1d6-TW-lvN">
+                            <connections>
+                                <segue destination="ImM-MM-f1e" kind="showDetail" id="vs4-kw-dSG"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="F2w-cZ-Afv">
                             <connections>
                                 <segue destination="FIa-yq-T0N" kind="showDetail" identifier="showCreate" id="dF3-0I-4yv"/>

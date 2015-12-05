@@ -8,18 +8,42 @@
 
 #import "AppDelegate.h"
 #import "DetailViewController.h"
-
-@interface AppDelegate () <UISplitViewControllerDelegate>
-
-@end
+#import <sys/sysctl.h>
 
 @implementation AppDelegate
+- (UIStoryboard *) grabStoryboard {
+    UIStoryboard *storyboard;
+    
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *machine = malloc(size);
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    NSString *platform = [NSString stringWithUTF8String:machine];
+    free(machine);
+    
+    if ([platform isEqualToString:@"iPhone7,2"] || [platform isEqualToString:@"iPhone8,2"])
+    {
+        NSLog(@"Iphone 6/6s");
+    } else if ([platform isEqualToString:@"x86_64"] || [platform isEqualToString:@"i386"])
+    {
+        NSLog(@"Simulator");
+    }
+    
+    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    return storyboard;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Pick storyboard based on device
+    UIStoryboard *storyboard = [self grabStoryboard];
+    self.window.rootViewController = [storyboard instantiateInitialViewController];
+    [self.window makeKeyAndVisible];
+    
     // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-    splitViewController.delegate = self;
+    splitViewController.delegate = (id) self;
     return YES;
 }
 

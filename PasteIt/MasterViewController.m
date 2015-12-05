@@ -10,6 +10,7 @@
 #import "DetailViewController.h"
 #import "HistoryViewController.h"
 #import "CreateViewController.h"
+
 #import "HUD.h"
 
 @implementation MasterViewController
@@ -17,14 +18,15 @@
 - (void)viewDidAppear:(BOOL)animated {
     if (!recents)
     {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        [HUD showUIBlockingIndicatorWithText:@"Downloading Pastes"];
+        [self getPastes];
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+- (void)getPastes {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    if (![self.refreshControl isRefreshing])
+        [HUD showUIBlockingIndicatorWithText:@"Downloading Pastes"];
+
     // Set up the detail view controller
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
@@ -43,10 +45,38 @@
                 
                 // Update UI in another thread
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [HUD hideUIBlockingIndicator];
+                    // If the app is refreshing, there is no blocking indicator
+                    if (![self.refreshControl isRefreshing])
+                        [HUD hideUIBlockingIndicator];
+                    
+                    // Reload the table
                     [self.tableView reloadData];
+                    
+                    // If app is refreshing, stop the refresh
+                    if ([self.refreshControl isRefreshing]) {
+                        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                        [formatter setDateFormat:@"MMM d, h:mm a"];
+                        
+                        // Add title with time of last refresh
+                        NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+                        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:nil];
+                        self.refreshControl.attributedTitle = attributedTitle;
+                        
+                        // End the refreshing
+                        [self.refreshControl endRefreshing];
+                    }
                 });
-      }] resume];
+            }] resume];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Add pull down to refresh
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                         action:@selector(getPastes)
+                         forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
