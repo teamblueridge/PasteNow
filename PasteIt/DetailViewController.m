@@ -33,9 +33,12 @@
                      NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                      
                      paste = [json objectForKey:@"raw"];
-                     
+                     author = [json objectForKey:@"name"];
+                     language = [json objectForKey:@"lang"];
                      dispatch_async(dispatch_get_main_queue(), ^{
                          self.detailTextView.text = paste;
+                         self.detailAuthorLabel.text = [NSString stringWithFormat:@"Author: %@", author];
+                         self.detailLanguageLabel.text = [NSString stringWithFormat:@"Language: %@", language];
                          [HUD hideUIBlockingIndicator];
                      });
                  }] resume];
