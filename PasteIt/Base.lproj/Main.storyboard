@@ -77,27 +77,10 @@
             </objects>
             <point key="canvasLocation" x="314.39999999999998" y="-2428.1999999999998"/>
         </scene>
-        <!--CreateController-->
-        <scene sceneID="cgr-F2-xgO">
-            <objects>
-                <navigationController title="CreateController" id="FIa-yq-T0N" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NvT-7z-h1T">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="1MK-9K-svE" kind="relationship" relationship="rootViewController" id="u5u-pA-8Ha"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4va-A6-CYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1420.8" y="-1722.46"/>
-        </scene>
-        <!--createPasteView-->
+        <!--createView-->
         <scene sceneID="dR0-0z-q9W">
             <objects>
-                <viewController title="createPasteView" id="1MK-9K-svE" sceneMemberID="viewController">
+                <viewController title="createView" id="1MK-9K-svE" customClass="CreateViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IVS-dY-gdu"/>
                         <viewControllerLayoutGuide type="bottom" id="AcN-RF-kCy"/>
@@ -126,7 +109,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cMA-Aq-87n">
-                                <rect key="frame" x="20" y="368" width="338" height="119"/>
+                                <rect key="frame" x="20" y="368" width="280" height="119"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -135,23 +118,37 @@
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SE9-yf-sNQ">
                                 <rect key="frame" x="17" y="199" width="283" height="111"/>
                                 <animations/>
+                                <connections>
+                                    <outlet property="dataSource" destination="1MK-9K-svE" id="r67-pW-Q2P"/>
+                                    <outlet property="delegate" destination="1MK-9K-svE" id="TuI-cM-aRm"/>
+                                </connections>
                             </pickerView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Paste" id="Tgu-sd-Prm">
-                        <barButtonItem key="rightBarButtonItem" title="Submit" id="DTP-lj-VxA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="DTP-lj-VxA">
+                            <connections>
+                                <action selector="sendPaste:" destination="1MK-9K-svE" id="NOY-8e-GlD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="pasteAuthor" destination="3j9-5B-uOo" id="gKn-WK-aZk"/>
+                        <outlet property="pasteContent" destination="cMA-Aq-87n" id="yAk-os-4lz"/>
+                        <outlet property="pasteTitle" destination="4si-oh-aU0" id="eq8-lY-Nfg"/>
+                        <outlet property="pickerView" destination="SE9-yf-sNQ" id="dmk-3Z-ABv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZn-Cn-OfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1584" y="-1019"/>
+            <point key="canvasLocation" x="-720" y="-1669"/>
         </scene>
         <!--History-->
         <scene sceneID="ohL-M9-MFR">
             <objects>
-                <tableViewController id="gtP-gU-LPW" sceneMemberID="viewController">
+                <tableViewController id="gtP-gU-LPW" customClass="HistoryViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="M1V-gs-9l1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,9 +180,6 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
-                                <connections>
-                                    <segue destination="JEX-9P-axG" kind="push" id="BDW-QH-C7H"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -197,24 +191,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vco-bB-gPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-818.66666666666663" y="-965.60000000000002"/>
-        </scene>
-        <!--HistoryController-->
-        <scene sceneID="6cO-75-6ue">
-            <objects>
-                <navigationController title="HistoryController" id="ImM-MM-f1e" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iXk-dt-JOR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="gtP-gU-LPW" kind="relationship" relationship="rootViewController" id="mVC-2H-AVY"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="782-TK-e8M" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-818.66666666666663" y="-1728.1399999999999"/>
+            <point key="canvasLocation" x="-1743" y="-1678"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -260,7 +237,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="JEX-9P-axG" kind="push" identifier="showDetail" id="6S0-TO-JiA"/>
+                                    <segue destination="JEX-9P-axG" kind="push" id="TOk-av-BQD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -274,12 +251,12 @@
                     <navigationItem key="navigationItem" title="Recent Pastes" id="Zdf-7t-Un8">
                         <barButtonItem key="leftBarButtonItem" title="History" id="1d6-TW-lvN">
                             <connections>
-                                <segue destination="gtP-gU-LPW" kind="push" id="vs4-kw-dSG"/>
+                                <segue destination="gtP-gU-LPW" kind="push" id="nbd-oQ-Bvx"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="F2w-cZ-Afv">
                             <connections>
-                                <segue destination="1MK-9K-svE" kind="push" identifier="showCreate" id="dF3-0I-4yv"/>
+                                <segue destination="1MK-9K-svE" kind="push" id="XY3-nY-CPg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -289,26 +266,5 @@
             </objects>
             <point key="canvasLocation" x="-1115" y="-2419"/>
         </scene>
-        <!--DetailViewController-->
-        <scene sceneID="r7l-gg-dq7">
-            <objects>
-                <navigationController title="DetailViewController" id="vC3-pB-5Vb" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="JEX-9P-axG" kind="relationship" relationship="rootViewController" id="GKi-kA-LjT"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-205.86666666666667" y="-2428.1999999999998"/>
-        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="vs4-kw-dSG"/>
-        <segue reference="dF3-0I-4yv"/>
-        <segue reference="6S0-TO-JiA"/>
-    </inferredMetricsTieBreakers>
 </document>

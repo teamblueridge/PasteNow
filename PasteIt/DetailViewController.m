@@ -41,7 +41,8 @@
                          self.detailLanguageLabel.text = [NSString stringWithFormat:@"Language: %@", language];
                          [HUD hideUIBlockingIndicator];
                      });
-                 }] resume];
+                 }
+          ] resume];
     }
 }
 

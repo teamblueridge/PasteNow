@@ -10,8 +10,13 @@
 
 
 @interface CreateViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
+    NSArray *prettyLanguages;
+    NSArray *uglyLanguages;
+    NSString *lang;
+    IBOutlet UITextField *pasteTitle;
+    IBOutlet UITextField *pasteAuthor;
     IBOutlet UIPickerView *pickerView;
+    IBOutlet UITextView *pasteContent;
 }
 
-@property (strong, nonatomic) NSArray *languages;
 @end

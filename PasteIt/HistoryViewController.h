@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface HistoryViewController : UIViewController {
-    //NSString *paste;
+@interface HistoryViewController : UITableViewController {
+    NSArray *recents;
 }
 
 @end
