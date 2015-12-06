@@ -15,8 +15,6 @@
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
-@property (nonatomic, retain) UIProgressView *progressBar;
-@property (nonatomic, retain) NSMutableData *resourceData;
-@property (nonatomic, retain) NSNumber *filesize;
+
 
 @end

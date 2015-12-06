@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
-@interface CreateViewController : UIViewController {}
+@interface CreateViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
+    IBOutlet UIPickerView *pickerView;
+}
 
+@property (strong, nonatomic) NSArray *languages;
 @end
