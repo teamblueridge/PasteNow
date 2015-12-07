@@ -17,6 +17,7 @@
     IBOutlet UITextField *pasteAuthor;
     IBOutlet UIPickerView *pickerView;
     IBOutlet UITextView *pasteContent;
+    NSMutableData *responseData;
 }
 
 @end
