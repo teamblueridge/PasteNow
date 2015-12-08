@@ -66,7 +66,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Paste Details" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Paste Details" id="mOI-FS-AaM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="reply" id="uK4-5Y-ShZ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailAuthorLabel" destination="mtF-eZ-sM7" id="yew-JM-zeK"/>
                         <outlet property="detailLanguageLabel" destination="BMo-Qy-wMn" id="HZ9-Hg-4HJ"/>
@@ -75,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="314.39999999999998" y="-2428.1999999999998"/>
+            <point key="canvasLocation" x="140" y="-2419"/>
         </scene>
         <!--createView-->
         <scene sceneID="dR0-0z-q9W">
@@ -143,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZn-Cn-OfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-720" y="-1669"/>
+            <point key="canvasLocation" x="-1707" y="-1670"/>
         </scene>
         <!--History-->
         <scene sceneID="ohL-M9-MFR">
@@ -191,7 +193,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vco-bB-gPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1743" y="-1678"/>
+            <point key="canvasLocation" x="-547" y="-1670"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -237,7 +239,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="JEX-9P-axG" kind="push" id="TOk-av-BQD"/>
+                                    <segue destination="JEX-9P-axG" kind="push" identifier="showDetail" id="Ch0-63-eoX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -251,7 +253,7 @@
                     <navigationItem key="navigationItem" title="Recent Pastes" id="Zdf-7t-Un8">
                         <barButtonItem key="leftBarButtonItem" title="History" id="1d6-TW-lvN">
                             <connections>
-                                <segue destination="gtP-gU-LPW" kind="push" id="nbd-oQ-Bvx"/>
+                                <segue destination="gtP-gU-LPW" kind="push" identifier="showHistory" id="nbd-oQ-Bvx"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="F2w-cZ-Afv">

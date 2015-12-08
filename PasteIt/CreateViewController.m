@@ -7,6 +7,7 @@
 //
 
 #import "MasterViewController.h"
+#import "DetailViewController.h"
 #import "CreateViewController.h"
 #import "HUD.h"
 #import "UIView+Toast.h"

@@ -10,6 +10,10 @@
 #import "DetailViewController.h"
 #import <sys/sysctl.h>
 
+@interface AppDelegate () <UISplitViewControllerDelegate>
+
+@end
+
 @implementation AppDelegate
 - (UIStoryboard *) grabStoryboard {
     UIStoryboard *storyboard;
@@ -36,14 +40,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Pick storyboard based on device
-    UIStoryboard *storyboard = [self grabStoryboard];
-    self.window.rootViewController = [storyboard instantiateInitialViewController];
-    [self.window makeKeyAndVisible];
-    
     // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-    splitViewController.delegate = (id) self;
+    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+    navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
+    splitViewController.delegate = self;
     return YES;
 }
 

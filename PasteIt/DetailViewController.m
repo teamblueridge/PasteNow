@@ -9,6 +9,10 @@
 #import "DetailViewController.h"
 #import "HUD.h"
 
+@interface DetailViewController ()
+
+@end
+
 @implementation DetailViewController
 
 #pragma mark - Managing the detail item
@@ -16,7 +20,7 @@
 - (void)setDetailItem:(id)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-            
+        
         // Update the view.
         [self configureView];
     }
@@ -25,6 +29,9 @@
 - (void)configureView {
     if (self.pasteID) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [HUD showUIBlockingIndicatorWithText:@"Downloading Paste Data"];
+        NSLog(@"%@", self.pasteID);
+        
         NSString *url = [NSString stringWithFormat:@"https://paste.teamblueridge.org/api/paste/%@/?apikey=teamblueridgepaste", self.pasteID];
         NSURLSession *session2 = [NSURLSession sharedSession];
         [[session2 dataTaskWithURL:[NSURL URLWithString:url]
@@ -35,6 +42,7 @@
                      paste = [json objectForKey:@"raw"];
                      author = [json objectForKey:@"name"];
                      language = [json objectForKey:@"lang"];
+                     
                      dispatch_async(dispatch_get_main_queue(), ^{
                          self.detailTextView.text = paste;
                          self.detailAuthorLabel.text = [NSString stringWithFormat:@"Author: %@", author];
@@ -49,8 +57,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [HUD showUIBlockingIndicatorWithText:@"Downloading Paste Data"];
     [self configureView];
 }
 

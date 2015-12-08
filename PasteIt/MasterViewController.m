@@ -13,7 +13,23 @@
 
 #import "HUD.h"
 
+@interface MasterViewController ()
+
+@end
+
+
 @implementation MasterViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    // Add pull down to refresh
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                            action:@selector(getPastes)
+                  forControlEvents:UIControlEventValueChanged];
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     if (!recents)
@@ -27,9 +43,6 @@
     if (![self.refreshControl isRefreshing])
         [HUD showUIBlockingIndicatorWithText:@"Downloading Pastes"];
 
-    // Set up the detail view controller
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
     // Download JSON
     NSString *url = @"https://paste.teamblueridge.org/api/recent/?apikey=teamblueridgepaste";
     NSURLSession *session = [NSURLSession sharedSession];
@@ -69,16 +82,6 @@
             }] resume];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Add pull down to refresh
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self
-                         action:@selector(getPastes)
-                         forControlEvents:UIControlEventValueChanged];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
     [super viewWillAppear:animated];
@@ -94,9 +97,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
+        UINavigationController *navController = [segue destinationViewController];
+        DetailViewController *controller = (DetailViewController *) navController.topViewController;
         
-        // Set the pasteID for the detail view to grab data
         controller.pasteID =  [[recents objectAtIndex:indexPath.row] objectForKey:@"pid"];
         
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
@@ -104,14 +107,15 @@
     } else if ([[segue identifier] isEqualToString:@"showHistory"]) {
         // Show history
         NSLog(@"Showing history");
-        HistoryViewController *controller = (HistoryViewController *)[[segue destinationViewController] topViewController];
-        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        controller.navigationItem.leftItemsSupplementBackButton = YES;
+//        HistoryViewController *controller = (HistoryViewController *)[[segue destinationViewController] topViewController];
+//        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+//        controller.navigationItem.leftItemsSupplementBackButton = YES;
     } else if ([[segue identifier] isEqualToString:@"showCreate"]) {
         // Show add new
-        CreateViewController *controller = (CreateViewController *)[[segue destinationViewController] topViewController];
-        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        controller.navigationItem.leftItemsSupplementBackButton = YES;
+        NSLog(@"Showing create");
+//        CreateViewController *controller = (CreateViewController *)[[segue destinationViewController] topViewController];
+//        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+//        controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
 }
 
