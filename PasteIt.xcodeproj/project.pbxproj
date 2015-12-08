@@ -13,6 +13,7 @@
 		B909B2571C0BFB7E00282353 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B909B2531C0BFB7E00282353 /* MBProgressHUD.m */; };
 		B92875081C11458B004635CF /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92875071C11458B004635CF /* HistoryViewController.m */; };
 		B928750B1C1154E1004635CF /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B928750A1C1154E1004635CF /* CreateViewController.m */; };
+		B944F5AE1C1697FA00580968 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B944F5AD1C1697FA00580968 /* UIView+Toast.m */; };
 		B9C92EA51C093E1300A61A82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C92EA41C093E1300A61A82 /* main.m */; };
 		B9C92EA81C093E1300A61A82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C92EA71C093E1300A61A82 /* AppDelegate.m */; };
 		B9C92EAB1C093E1300A61A82 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C92EAA1C093E1300A61A82 /* MasterViewController.m */; };
@@ -52,6 +53,8 @@
 		B92875091C1145E2004635CF /* HistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		B928750A1C1154E1004635CF /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
 		B928750C1C1154EE004635CF /* CreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
+		B944F5AC1C1697FA00580968 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		B944F5AD1C1697FA00580968 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		B9C92EA01C093E1300A61A82 /* PasteIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C92EA41C093E1300A61A82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B9C92EA61C093E1300A61A82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -111,9 +114,20 @@
 			path = PasteIt/HUD;
 			sourceTree = "<group>";
 		};
+		B944F5AB1C1697FA00580968 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				B944F5AC1C1697FA00580968 /* UIView+Toast.h */,
+				B944F5AD1C1697FA00580968 /* UIView+Toast.m */,
+			);
+			name = Toast;
+			path = PasteIt/HUD/Toast;
+			sourceTree = "<group>";
+		};
 		B9C92E971C093E1300A61A82 = {
 			isa = PBXGroup;
 			children = (
+				B944F5AB1C1697FA00580968 /* Toast */,
 				B909B24D1C0BFB7E00282353 /* HUD */,
 				B9C92EA21C093E1300A61A82 /* PasteIt */,
 				B9C92EBF1C093E1300A61A82 /* PasteItTests */,
@@ -312,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B944F5AE1C1697FA00580968 /* UIView+Toast.m in Sources */,
 				B909B2561C0BFB7E00282353 /* HUD.m in Sources */,
 				B909B2571C0BFB7E00282353 /* MBProgressHUD.m in Sources */,
 				B9C92EA81C093E1300A61A82 /* AppDelegate.m in Sources */,

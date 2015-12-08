@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 #import "CreateViewController.h"
 #import "HUD.h"
+#import "UIView+Toast.h"
 
 @implementation CreateViewController
 
@@ -88,7 +89,14 @@
         NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // toast with a specific duration and position
+            [self.view makeToast:@"Paste was successfully submitted..."
+                        duration:2.5
+                        position:CSToastPositionCenter];
+
+        });
+}];
     
     [postDataTask resume];
 }
