@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -272,14 +271,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recent Pastes" id="Zdf-7t-Un8">
-                        <leftBarButtonItems>
-                            <barButtonItem title="Settings" id="uQu-Tf-21k">
-                                <connections>
-                                    <segue destination="XDq-kJ-wck" kind="showDetail" id="VWe-4s-n1X"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="History" id="hpW-jo-eJ4"/>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="uQu-Tf-21k">
+                            <connections>
+                                <segue destination="XDq-kJ-wck" kind="showDetail" id="VWe-4s-n1X"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Vhb-Fp-z7B">
                             <connections>
                                 <segue destination="njR-FZ-pZ7" kind="showDetail" identifier="showCreate" id="W6o-0F-txp"/>
