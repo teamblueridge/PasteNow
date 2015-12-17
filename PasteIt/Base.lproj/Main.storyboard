@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -77,6 +78,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="g9P-D3-ahO">
+            <objects>
+                <viewController id="Fww-X1-p1B" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Fz-7Q-XUN"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kb7-Et-yxi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ajh-U5-0K4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://paste.teamblueridge.org" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eLF-78-Hc6">
+                                <rect key="frame" x="20" y="126" width="413" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="tbrpaste" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jje-mq-GDe">
+                                <rect key="frame" x="20" y="193" width="413" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gCe-fv-YwN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r1U-tV-BWI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="709" y="920"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4bq-SZ-vkA">
+            <objects>
+                <navigationController id="XDq-kJ-wck" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xri-kw-iTb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Fww-X1-p1B" kind="relationship" relationship="rootViewController" id="PJZ-ao-3XC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U9u-gq-VLj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-38" y="927"/>
         </scene>
         <!--Create Paste-->
         <scene sceneID="XOF-78-uTX">
@@ -202,7 +250,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recent Pastes" id="Zdf-7t-Un8">
-                        <barButtonItem key="leftBarButtonItem" title="History" id="hpW-jo-eJ4"/>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Settings" id="uQu-Tf-21k">
+                                <connections>
+                                    <segue destination="XDq-kJ-wck" kind="showDetail" id="VWe-4s-n1X"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="History" id="hpW-jo-eJ4"/>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Vhb-Fp-z7B">
                             <connections>
                                 <segue destination="njR-FZ-pZ7" kind="showDetail" identifier="showCreate" id="W6o-0F-txp"/>
@@ -231,7 +286,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6S0-TO-JiA"/>
         <segue reference="W6o-0F-txp"/>
+        <segue reference="6S0-TO-JiA"/>
     </inferredMetricsTieBreakers>
 </document>
