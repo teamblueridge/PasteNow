@@ -16,6 +16,12 @@
 		B93E70121C22426F00700E31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B93E70101C22426F00700E31 /* LaunchScreen.storyboard */; };
 		B93E701D1C22426F00700E31 /* PasteItTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E701C1C22426F00700E31 /* PasteItTests.m */; };
 		B93E70281C22426F00700E31 /* PasteItUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E70271C22426F00700E31 /* PasteItUITests.m */; };
+		B93E703F1C2245FB00700E31 /* btnCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = B93E70361C2245FB00700E31 /* btnCheck.png */; };
+		B93E70401C2245FB00700E31 /* btnCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B93E70371C2245FB00700E31 /* btnCheck@2x.png */; };
+		B93E70411C2245FB00700E31 /* HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E70391C2245FB00700E31 /* HUD.m */; };
+		B93E70421C2245FB00700E31 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E703B1C2245FB00700E31 /* MBProgressHUD.m */; };
+		B93E70431C2245FB00700E31 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E703E1C2245FB00700E31 /* UIView+Toast.m */; };
+		B93E70451C2251F400700E31 /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E70441C2251F400700E31 /* CreateViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +60,16 @@
 		B93E70231C22426F00700E31 /* PasteItUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PasteItUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93E70271C22426F00700E31 /* PasteItUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasteItUITests.m; sourceTree = "<group>"; };
 		B93E70291C22426F00700E31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B93E70361C2245FB00700E31 /* btnCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnCheck.png; sourceTree = "<group>"; };
+		B93E70371C2245FB00700E31 /* btnCheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCheck@2x.png"; sourceTree = "<group>"; };
+		B93E70381C2245FB00700E31 /* HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUD.h; sourceTree = "<group>"; };
+		B93E70391C2245FB00700E31 /* HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUD.m; sourceTree = "<group>"; };
+		B93E703A1C2245FB00700E31 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		B93E703B1C2245FB00700E31 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B93E703D1C2245FB00700E31 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		B93E703E1C2245FB00700E31 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		B93E70441C2251F400700E31 /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
+		B93E70461C22520B00700E31 /* CreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +100,7 @@
 		B93E6FF31C22426F00700E31 = {
 			isa = PBXGroup;
 			children = (
+				B93E70351C2245FB00700E31 /* HUD */,
 				B93E6FFE1C22426F00700E31 /* PasteIt */,
 				B93E701B1C22426F00700E31 /* PasteItTests */,
 				B93E70261C22426F00700E31 /* PasteItUITests */,
@@ -108,6 +125,8 @@
 				B93E70031C22426F00700E31 /* AppDelegate.m */,
 				B93E70051C22426F00700E31 /* MasterViewController.h */,
 				B93E70061C22426F00700E31 /* MasterViewController.m */,
+				B93E70461C22520B00700E31 /* CreateViewController.h */,
+				B93E70441C2251F400700E31 /* CreateViewController.m */,
 				B93E70081C22426F00700E31 /* DetailViewController.h */,
 				B93E70091C22426F00700E31 /* DetailViewController.m */,
 				B93E700B1C22426F00700E31 /* Main.storyboard */,
@@ -143,6 +162,30 @@
 				B93E70291C22426F00700E31 /* Info.plist */,
 			);
 			path = PasteItUITests;
+			sourceTree = "<group>";
+		};
+		B93E70351C2245FB00700E31 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				B93E70361C2245FB00700E31 /* btnCheck.png */,
+				B93E70371C2245FB00700E31 /* btnCheck@2x.png */,
+				B93E70381C2245FB00700E31 /* HUD.h */,
+				B93E70391C2245FB00700E31 /* HUD.m */,
+				B93E703A1C2245FB00700E31 /* MBProgressHUD.h */,
+				B93E703B1C2245FB00700E31 /* MBProgressHUD.m */,
+				B93E703C1C2245FB00700E31 /* Toast */,
+			);
+			name = HUD;
+			path = PasteIt/HUD;
+			sourceTree = "<group>";
+		};
+		B93E703C1C2245FB00700E31 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				B93E703D1C2245FB00700E31 /* UIView+Toast.h */,
+				B93E703E1C2245FB00700E31 /* UIView+Toast.m */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +291,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B93E70401C2245FB00700E31 /* btnCheck@2x.png in Resources */,
 				B93E70121C22426F00700E31 /* LaunchScreen.storyboard in Resources */,
+				B93E703F1C2245FB00700E31 /* btnCheck.png in Resources */,
 				B93E700F1C22426F00700E31 /* Assets.xcassets in Resources */,
 				B93E700D1C22426F00700E31 /* Main.storyboard in Resources */,
 			);
@@ -275,8 +320,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B93E70411C2245FB00700E31 /* HUD.m in Sources */,
+				B93E70421C2245FB00700E31 /* MBProgressHUD.m in Sources */,
 				B93E70041C22426F00700E31 /* AppDelegate.m in Sources */,
 				B93E70071C22426F00700E31 /* MasterViewController.m in Sources */,
+				B93E70451C2251F400700E31 /* CreateViewController.m in Sources */,
+				B93E70431C2245FB00700E31 /* UIView+Toast.m in Sources */,
 				B93E70011C22426F00700E31 /* main.m in Sources */,
 				B93E700A1C22426F00700E31 /* DetailViewController.m in Sources */,
 			);
