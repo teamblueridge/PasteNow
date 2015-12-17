@@ -17,11 +17,27 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    _pickerView.delegate = self;
-    _pickerView.dataSource = self;
+    
+    // Get site URL and such if not present already
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (![userDefaults objectForKey:@"siteurl"])
+    {
+        // Write the defaults
+        [userDefaults setObject:@"https://paste.teamblueridge.org" forKey:@"siteurl"];
+        [userDefaults setObject:@"teamblueridgepaste" forKey:@"apikey"];
+        [userDefaults synchronize];
+    }
+    
+    siteURL = [userDefaults objectForKey:@"siteurl"];
+    apikey = [userDefaults objectForKey:@"apikey"];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    NSString *url = @"https://paste.teamblueridge.org/api/langs/?apikey=teamblueridgepaste";
+    NSString *url = [NSString stringWithFormat:@"%@/api/langs/", siteURL];
+    if (![apikey isEqualToString:@""])
+        url = [NSString stringWithFormat:@"%@?apikey=%@", url, apikey];
+    
+    [HUD showUIBlockingIndicatorWithText:@"Downloading languages from the web"];
+    
     NSURLSession *session2 = [NSURLSession sharedSession];
     [[session2 dataTaskWithURL:[NSURL URLWithString:url]
              completionHandler:^(NSData *data, NSURLResponse *response,NSError *error) {
@@ -77,7 +93,12 @@
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
-    NSURL *url = [NSURL URLWithString:@"https://paste.teamblueridge.org/api/create?apikey=teamblueridgepaste"];
+    NSString *formatURL = [NSString stringWithFormat:@"%@/api/create/", siteURL];
+    if (![apikey isEqualToString:@""])
+        formatURL = [NSString stringWithFormat:@"%@?apikey=%@", formatURL, apikey];
+    
+    NSURL *url = [NSURL URLWithString:formatURL];
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];

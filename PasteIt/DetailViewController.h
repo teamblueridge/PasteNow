@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController {
+    NSString *siteURL;
+    NSString *apikey;
+}
 
 @property (strong, nonatomic) NSObject *detailItem;
 @property (strong, nonatomic) NSString *pasteID;

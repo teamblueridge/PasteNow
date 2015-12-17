@@ -34,7 +34,13 @@
         [HUD showUIBlockingIndicatorWithText:@"Downloading Paste Data"];
         NSLog(@"%@", self.pasteID);
         
-        NSString *url = [NSString stringWithFormat:@"https://paste.teamblueridge.org/api/paste/%@/?apikey=teamblueridgepaste", self.pasteID];
+        // Set up the URL
+        NSString *url = [NSString stringWithFormat:@"%@/api/paste/%@/", siteURL, self.pasteID];
+        
+        // Check for API Key that isn't empty
+        if (![apikey isEqualToString:@""])
+            url = [NSString stringWithFormat:@"%@?apikey=%@", url, apikey];
+
         NSURLSession *session2 = [NSURLSession sharedSession];
         [[session2 dataTaskWithURL:[NSURL URLWithString:url]
                  completionHandler:^(NSData *data, NSURLResponse *response,NSError *error) {
@@ -57,6 +63,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    // Get site URL and such if not present already
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (![userDefaults objectForKey:@"siteurl"])
+    {
+        // Write the defaults
+        [userDefaults setObject:@"https://paste.teamblueridge.org" forKey:@"siteurl"];
+        [userDefaults setObject:@"teamblueridgepaste" forKey:@"apikey"];
+        [userDefaults synchronize];
+    }
+    
+    siteURL = [userDefaults objectForKey:@"siteurl"];
+    apikey = [userDefaults objectForKey:@"apikey"];
+    
+    // Configure the detail view
     [self configureView];
 }
 

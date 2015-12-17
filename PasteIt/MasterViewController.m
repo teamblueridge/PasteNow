@@ -20,11 +20,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Set the detail view
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    // Set refresh on pull down
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self
                             action:@selector(getPastes)
                   forControlEvents:UIControlEventValueChanged];
+    
+    // Get site URL and such if not present already
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (![userDefaults objectForKey:@"siteurl"])
+    {
+        // Write the defaults
+        [userDefaults setObject:@"https://paste.teamblueridge.org" forKey:@"siteurl"];
+        [userDefaults setObject:@"teamblueridgepaste" forKey:@"apikey"];
+        [userDefaults synchronize];
+    }
+    
+    siteURL = [userDefaults objectForKey:@"siteurl"];
+    apikey = [userDefaults objectForKey:@"apikey"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,8 +65,13 @@
     if (![self.refreshControl isRefreshing])
         [HUD showUIBlockingIndicatorWithText:@"Downloading Pastes"];
     
-    // Download JSON
-    NSString *url = @"https://paste.teamblueridge.org/api/recent/?apikey=teamblueridgepaste";
+    // Set up the URL
+    NSString *url = [NSString stringWithFormat:@"%@/api/recent/", siteURL];
+    
+    // Check for API Key that isn't empty
+    if (![apikey isEqualToString:@""])
+        url = [NSString stringWithFormat:@"%@?apikey=%@", url, apikey];
+    
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:url]
             completionHandler:^(NSData *data,

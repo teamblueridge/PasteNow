@@ -12,6 +12,8 @@
 
 @interface MasterViewController : UITableViewController {
     NSArray *recents;
+    NSString *siteURL;
+    NSString *apikey;
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;

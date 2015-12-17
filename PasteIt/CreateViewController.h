@@ -18,6 +18,8 @@
     NSArray *uglyLanguages;
     NSMutableData *responseData;
     NSString *lang;
+    NSString *siteURL;
+    NSString *apikey;
 }
 
 @property (strong, nonatomic) NSString *replyID;

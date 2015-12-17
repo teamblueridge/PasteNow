@@ -22,6 +22,7 @@
 		B93E70421C2245FB00700E31 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E703B1C2245FB00700E31 /* MBProgressHUD.m */; };
 		B93E70431C2245FB00700E31 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E703E1C2245FB00700E31 /* UIView+Toast.m */; };
 		B93E70451C2251F400700E31 /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E70441C2251F400700E31 /* CreateViewController.m */; };
+		B93E70481C227C6000700E31 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E70471C227C6000700E31 /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		B93E703E1C2245FB00700E31 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		B93E70441C2251F400700E31 /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
 		B93E70461C22520B00700E31 /* CreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
+		B93E70471C227C6000700E31 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		B93E70491C227C9800700E31 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				B93E70101C22426F00700E31 /* LaunchScreen.storyboard */,
 				B93E70131C22426F00700E31 /* Info.plist */,
 				B93E6FFF1C22426F00700E31 /* Supporting Files */,
+				B93E70471C227C6000700E31 /* SettingsViewController.m */,
+				B93E70491C227C9800700E31 /* SettingsViewController.h */,
 			);
 			path = PasteIt;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				B93E70411C2245FB00700E31 /* HUD.m in Sources */,
 				B93E70421C2245FB00700E31 /* MBProgressHUD.m in Sources */,
 				B93E70041C22426F00700E31 /* AppDelegate.m in Sources */,
+				B93E70481C227C6000700E31 /* SettingsViewController.m in Sources */,
 				B93E70071C22426F00700E31 /* MasterViewController.m in Sources */,
 				B93E70451C2251F400700E31 /* CreateViewController.m in Sources */,
 				B93E70431C2245FB00700E31 /* UIView+Toast.m in Sources */,
