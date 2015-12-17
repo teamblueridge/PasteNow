@@ -32,7 +32,6 @@
     if (self.pasteID) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         [HUD showUIBlockingIndicatorWithText:@"Downloading Paste Data"];
-        NSLog(@"%@", self.pasteID);
         
         // Set up the URL
         NSString *url = [NSString stringWithFormat:@"%@/api/paste/%@/", siteURL, self.pasteID];

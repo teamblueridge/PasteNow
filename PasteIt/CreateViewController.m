@@ -85,14 +85,20 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
 {
-    NSLog(@"Lang selected: %@", [uglyLanguages objectAtIndex:row]);
     lang = [uglyLanguages objectAtIndex:row];
 }
 
 - (IBAction)sendPaste:(id)sender {
-    if (!_titleField || !_authorField || !lang || !_pasteContent)
+    if ([_titleField.text isEqualToString:@""] || [_authorField.text isEqualToString:@""] || [_pasteContent.text isEqualToString:@""])
     {
-        NSLog(@"There is not a title, author, lang, or paste content");
+        // Alert the user with async toast
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // toast with a specific duration and position
+            [self.view makeToast:@"Either the title, author, or paste content field was empty..." duration:2.5 position:CSToastPositionBottom];
+            
+        });
+        
+        // Dont go any further
         return;
     }
     
@@ -122,7 +128,6 @@
     // Run the task
     NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSString *webResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", webResponse);
         
         if ([webResponse containsString:@"paste contains blocked words"] || [webResponse isEqualToString:@""])
         {
