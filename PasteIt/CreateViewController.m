@@ -50,6 +50,12 @@
                  
                  dispatch_async(dispatch_get_main_queue(), ^{
                      [_pickerView reloadAllComponents];
+                     for (int i = 0; i < [uglyLanguages count]; i++)
+                     {
+                         if ([uglyLanguages[i] isEqualToString:@"text"])
+                             [_pickerView selectRow:i inComponent:0 animated:NO];
+                     }
+                     lang = @"text";
                      [HUD hideUIBlockingIndicator];
                  });
              }
@@ -84,7 +90,6 @@
 }
 
 - (IBAction)sendPaste:(id)sender {
-    NSLog(@"Clicked submit");
     if (!_titleField || !_authorField || !lang || !_pasteContent)
     {
         NSLog(@"There is not a title, author, lang, or paste content");
@@ -94,40 +99,50 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
     NSString *formatURL = [NSString stringWithFormat:@"%@/api/create/", siteURL];
+    
+    // Add the api key to the request
     if (![apikey isEqualToString:@""])
         formatURL = [NSString stringWithFormat:@"%@?apikey=%@", formatURL, apikey];
-    
+
     NSURL *url = [NSURL URLWithString:formatURL];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:60.0];
-    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [request setHTTPMethod:@"POST"];
     
-    NSString * params;
-
-    if (!self.replyID){
-         params = [NSString stringWithFormat:@"text=%@&title=%@&name=%@&lang=%@",_pasteContent.text, _titleField.text, _authorField.text, lang];
-    } else {
-         params = [NSString stringWithFormat:@"text=%@&title=%@&name=%@&lang=%@&reply=%@",_pasteContent.text, _titleField.text, _authorField.text, lang, self.replyID];
+    // Set the data to be set to the api
+    NSString * params = [NSString stringWithFormat:@"text=%@&title=%@&name=%@&lang=%@",_pasteContent.text, _titleField.text, _authorField.text, lang];
+    
+    // Add reply ID if it exists
+    if (self.replyID){
+         params = [NSString stringWithFormat:@"%@&reply=%@", params, self.replyID];
     }
    
+    // Now set the body from the parameter string
     [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     
+    // Run the task
     NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-        pasteboard.string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // toast with a specific duration and position
-//            [self.view makeToast:@"Paste was successfully submitted..."
-//                        duration:2.5
-//                        position:CSToastPositionCenter];
+        NSString *webResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", webResponse);
+        
+        if ([webResponse containsString:@"paste contains blocked words"] || [webResponse isEqualToString:@""])
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // toast with a specific duration and position
+                [self.view makeToast:@"Your paste contains blocked words..." duration:2.5 position:CSToastPositionBottom];
+                
+            });
+        } else {
+            // Copy to clipboard
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             
-        });
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // toast with a specific duration and position
+                [self.view makeToast:@"Paste was successfully submitted..." duration:2.5 position:CSToastPositionBottom];
+                
+            });
+        }
     }];
-    
     [postDataTask resume];
 }
 

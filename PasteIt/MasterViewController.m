@@ -20,14 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Set the detail view
+    // Set the detail view controller
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     // Set refresh on pull down
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self
-                            action:@selector(getPastes)
-                  forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(getPastes) forControlEvents:UIControlEventValueChanged];
     
     // Get site URL and such if not present already
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -39,6 +37,7 @@
         [userDefaults synchronize];
     }
     
+    // Set local variables for site and api from user defaults
     siteURL = [userDefaults objectForKey:@"siteurl"];
     apikey = [userDefaults objectForKey:@"apikey"];
 }
@@ -61,7 +60,10 @@
 }
 
 - (void)getPastes {
+    // Alert user to network usage
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    // If we arent refreshing, show a notification of loading
     if (![self.refreshControl isRefreshing])
         [HUD showUIBlockingIndicatorWithText:@"Downloading Pastes"];
     
@@ -74,9 +76,7 @@
     
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:url]
-            completionHandler:^(NSData *data,
-                                NSURLResponse *response,
-                                NSError *error) {
+            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                 // Turn network indicator off
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 
@@ -116,6 +116,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
         
+        // Set the paste ID so the detail view knows what to open
         [controller setPasteID:[[recents objectAtIndex:indexPath.row] objectForKey:@"pid"]];
         
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;

@@ -10,7 +10,7 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
-
+#import "UIView+Toast.h"
 #import "HUD.h"
 
 @interface CreateViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {

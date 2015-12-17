@@ -20,9 +20,9 @@
 		B93E70401C2245FB00700E31 /* btnCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B93E70371C2245FB00700E31 /* btnCheck@2x.png */; };
 		B93E70411C2245FB00700E31 /* HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E70391C2245FB00700E31 /* HUD.m */; };
 		B93E70421C2245FB00700E31 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E703B1C2245FB00700E31 /* MBProgressHUD.m */; };
-		B93E70431C2245FB00700E31 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E703E1C2245FB00700E31 /* UIView+Toast.m */; };
 		B93E70451C2251F400700E31 /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E70441C2251F400700E31 /* CreateViewController.m */; };
 		B93E70481C227C6000700E31 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E70471C227C6000700E31 /* SettingsViewController.m */; };
+		B93E705D1C22947D00700E31 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B93E70561C22947D00700E31 /* UIView+Toast.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,12 +67,12 @@
 		B93E70391C2245FB00700E31 /* HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUD.m; sourceTree = "<group>"; };
 		B93E703A1C2245FB00700E31 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		B93E703B1C2245FB00700E31 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		B93E703D1C2245FB00700E31 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
-		B93E703E1C2245FB00700E31 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		B93E70441C2251F400700E31 /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
 		B93E70461C22520B00700E31 /* CreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
 		B93E70471C227C6000700E31 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B93E70491C227C9800700E31 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		B93E70551C22947D00700E31 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		B93E70561C22947D00700E31 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +103,7 @@
 		B93E6FF31C22426F00700E31 = {
 			isa = PBXGroup;
 			children = (
+				B93E70541C22947D00700E31 /* Toast */,
 				B93E70351C2245FB00700E31 /* HUD */,
 				B93E6FFE1C22426F00700E31 /* PasteIt */,
 				B93E701B1C22426F00700E31 /* PasteItTests */,
@@ -178,19 +179,19 @@
 				B93E70391C2245FB00700E31 /* HUD.m */,
 				B93E703A1C2245FB00700E31 /* MBProgressHUD.h */,
 				B93E703B1C2245FB00700E31 /* MBProgressHUD.m */,
-				B93E703C1C2245FB00700E31 /* Toast */,
 			);
 			name = HUD;
 			path = PasteIt/HUD;
 			sourceTree = "<group>";
 		};
-		B93E703C1C2245FB00700E31 /* Toast */ = {
+		B93E70541C22947D00700E31 /* Toast */ = {
 			isa = PBXGroup;
 			children = (
-				B93E703D1C2245FB00700E31 /* UIView+Toast.h */,
-				B93E703E1C2245FB00700E31 /* UIView+Toast.m */,
+				B93E70551C22947D00700E31 /* UIView+Toast.h */,
+				B93E70561C22947D00700E31 /* UIView+Toast.m */,
 			);
-			path = Toast;
+			name = Toast;
+			path = Toast/Toast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,13 +326,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B93E705D1C22947D00700E31 /* UIView+Toast.m in Sources */,
 				B93E70411C2245FB00700E31 /* HUD.m in Sources */,
 				B93E70421C2245FB00700E31 /* MBProgressHUD.m in Sources */,
 				B93E70041C22426F00700E31 /* AppDelegate.m in Sources */,
 				B93E70481C227C6000700E31 /* SettingsViewController.m in Sources */,
 				B93E70071C22426F00700E31 /* MasterViewController.m in Sources */,
 				B93E70451C2251F400700E31 /* CreateViewController.m in Sources */,
-				B93E70431C2245FB00700E31 /* UIView+Toast.m in Sources */,
 				B93E70011C22426F00700E31 /* main.m in Sources */,
 				B93E700A1C22426F00700E31 /* DetailViewController.m in Sources */,
 			);
