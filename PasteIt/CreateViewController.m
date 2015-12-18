@@ -28,8 +28,16 @@
         [userDefaults synchronize];
     }
     
+    expireArrayNames = [NSArray arrayWithObjects:@"Burn on Reading", @"Keep Forever",@"5 Minutes",
+                        @"1 Hour", @"1 Day", @"1 Week", @"1 Month", @"1 Year" ,nil];
+    expireArrayValues = [NSArray arrayWithObjects:@"burn", @"0", @"5", @"60", @"1440", @"10080",
+                         @"40320", @"483840", nil];
+    [_expirePicker reloadAllComponents];
+    [_expirePicker selectRow:1 inComponent:0 animated:NO];
+    
     siteURL = [userDefaults objectForKey:@"siteurl"];
     apikey = [userDefaults objectForKey:@"apikey"];
+    expireTime = @"0";
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSString *url = [NSString stringWithFormat:@"%@/api/langs/", siteURL];
@@ -49,17 +57,17 @@
                  uglyLanguages = [json allKeys];
                  
                  dispatch_async(dispatch_get_main_queue(), ^{
-                     [_pickerView reloadAllComponents];
+                     [_languagePicker reloadAllComponents];
                      for (int i = 0; i < [uglyLanguages count]; i++)
                      {
                          if ([uglyLanguages[i] isEqualToString:@"text"])
-                             [_pickerView selectRow:i inComponent:0 animated:NO];
+                             [_languagePicker selectRow:i inComponent:0 animated:NO];
                      }
                      lang = @"text";
                      [HUD hideUIBlockingIndicator];
                  });
              }
-      ] resume];
+    ] resume];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,17 +83,32 @@
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
 {
-    return [prettyLanguages count];
+    if (pickerView == self.languagePicker) {
+        return [prettyLanguages count];
+    } else if (pickerView == self.expirePicker) {
+        return [expireArrayNames count];
+    }
+    return 0;
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
 {
-    return [prettyLanguages objectAtIndex:row];
+    if (pickerView == self.languagePicker) {
+        return [prettyLanguages objectAtIndex:row];
+    } else if (pickerView == self.expirePicker) {
+        return [expireArrayNames objectAtIndex:row];
+    }
+    
+    return @"";
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
 {
-    lang = [uglyLanguages objectAtIndex:row];
+    if (pickerView == self.languagePicker) {
+        lang = [uglyLanguages objectAtIndex:row];
+    } else if (pickerView == self.expirePicker) {
+        expireTime = [expireArrayValues objectAtIndex:row];
+    }
 }
 
 - (IBAction)sendPaste:(id)sender {
@@ -115,7 +138,8 @@
     [request setHTTPMethod:@"POST"];
     
     // Set the data to be set to the api
-    NSString * params = [NSString stringWithFormat:@"text=%@&title=%@&name=%@&lang=%@",_pasteContent.text, _titleField.text, _authorField.text, lang];
+    NSString * params = [NSString stringWithFormat:@"text=%@&title=%@&name=%@&lang=%@&expire=%@",_pasteContent.text, _titleField.text, _authorField.text,
+                         lang, expireTime];
     
     // Add reply ID if it exists
     if (self.replyID) {
@@ -141,16 +165,34 @@
                 [self.view makeToast:@"Your paste contains blocked words..." duration:2.5 position:CSToastPositionBottom];
                 
             });
-        } else {
-            // Copy to clipboard
-            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            pasteboard.string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        } else if ([webResponse containsString:@"copy this URL, it will become invalid on visit: "]) {
+            // If burn was used as expire, remove the crap data in front of the url
+            NSRange replaceRange = [webResponse rangeOfString:@"copy this URL, it will become invalid on visit: "];
+            if (replaceRange.location != NSNotFound){
+                webResponse = [webResponse stringByReplacingCharactersInRange:replaceRange withString:@""];
+            }
             
+            // Copy to the clipboard
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = webResponse;
+            
+            // Notify the user in the UI thread
             dispatch_async(dispatch_get_main_queue(), ^{
-                // toast with a specific duration and position
+                [self.view makeToast:@"Paste was successfully submitted... The link is in your clipbloard. It will be removed after it is loaded on the site." duration:2.5 position:CSToastPositionBottom];
+                
+            });
+
+        } else {
+            // Copy to the clipboard
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = webResponse;
+            
+            // Notify the user in the UI thread
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self.view makeToast:@"Paste was successfully submitted... The link is in your clipbloard" duration:2.5 position:CSToastPositionBottom];
                 
             });
+
         }
     }];
     [postDataTask resume];

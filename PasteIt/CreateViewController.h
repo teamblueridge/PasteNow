@@ -16,18 +16,22 @@
 @interface CreateViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
     NSArray *prettyLanguages;
     NSArray *uglyLanguages;
+    NSArray *expireArrayNames;
+    NSArray *expireArrayValues;
     NSMutableData *responseData;
     NSString *lang;
+    NSString *expireTime;
     NSString *siteURL;
     NSString *apikey;
 }
 
 @property (strong, nonatomic) NSString *replyID;
 
-@property (weak, nonatomic) IBOutlet UITextField *titleField;
-@property (weak, nonatomic) IBOutlet UITextField *authorField;
-@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
-@property (weak, nonatomic) IBOutlet UISwitch *privateSwitch;
-@property (weak, nonatomic) IBOutlet UITextView *pasteContent;
+@property (weak,nonatomic) IBOutlet UITextField *titleField;
+@property (weak,nonatomic) IBOutlet UITextField *authorField;
+@property (weak,nonatomic) IBOutlet UIPickerView *expirePicker;
+@property (weak,nonatomic) IBOutlet UIPickerView *languagePicker;
+@property (weak,nonatomic) IBOutlet UISwitch *privateSwitch;
+@property (weak,nonatomic) IBOutlet UITextView *pasteContent;
 
 @end
