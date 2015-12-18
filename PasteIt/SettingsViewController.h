@@ -14,5 +14,6 @@
 
 @property (weak,nonatomic) IBOutlet UITextField *siteURL;
 @property (weak,nonatomic) IBOutlet UITextField *apiKey;
+@property (weak,nonatomic) IBOutlet UITextField *mainViewSelection;
 
 @end

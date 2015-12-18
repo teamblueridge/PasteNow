@@ -28,12 +28,28 @@
         [_siteURL setText: [userDefaults objectForKey:@"siteurl"]];
         [_apiKey setText: [userDefaults objectForKey:@"apikey"]];
     }
+    
+    if (![userDefaults objectForKey:@"mainScreenPref"])
+    {
+        [userDefaults setObject:@"recent" forKey:@"mainScreenPref"];
+        [userDefaults synchronize];
+    } else {
+        [_mainViewSelection setText: [userDefaults objectForKey:@"mainScreenPref"]];
+    }
 }
 
 - (IBAction)savePreferences:(id)sender {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject: [_siteURL text] forKey:@"siteurl"];
     [userDefaults setObject: [_apiKey text] forKey:@"apikey"];
+    
+    if ([_mainViewSelection.text containsString:@"trending"])
+    {
+        [userDefaults setObject:@"trending" forKey:@"mainScreenPref"];
+    } else {
+        [userDefaults setObject:@"recent" forKey:@"mainScreenPref"];
+    }
+    
     [userDefaults synchronize];
 }
 

@@ -37,6 +37,12 @@
         [userDefaults synchronize];
     }
     
+    if (![userDefaults objectForKey:@"mainScreenPref"])
+    {
+        [userDefaults setObject:@"recent" forKey:@"mainScreenPref"];
+        [userDefaults synchronize];
+    }
+    
     // Set local variables for site and api from user defaults
     siteURL = [userDefaults objectForKey:@"siteurl"];
     apikey = [userDefaults objectForKey:@"apikey"];
@@ -68,7 +74,8 @@
         [HUD showUIBlockingIndicatorWithText:@"Downloading Pastes"];
     
     // Set up the URL
-    NSString *url = [NSString stringWithFormat:@"%@/api/recent/", siteURL];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *url = [NSString stringWithFormat:@"%@/api/%@/", siteURL, [userDefaults objectForKey:@"mainScreenPref" ]];
     
     // Check for API Key that isn't empty
     if (![apikey isEqualToString:@""])
