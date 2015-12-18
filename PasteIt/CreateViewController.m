@@ -118,10 +118,15 @@
     NSString * params = [NSString stringWithFormat:@"text=%@&title=%@&name=%@&lang=%@",_pasteContent.text, _titleField.text, _authorField.text, lang];
     
     // Add reply ID if it exists
-    if (self.replyID){
+    if (self.replyID) {
          params = [NSString stringWithFormat:@"%@&reply=%@", params, self.replyID];
     }
-   
+    
+    // Check if it is a private paste
+    if ([_privateSwitch isOn]) {
+        params = [NSString stringWithFormat:@"%@&private=1", params];
+    }
+    
     // Now set the body from the parameter string
     [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -143,7 +148,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // toast with a specific duration and position
-                [self.view makeToast:@"Paste was successfully submitted..." duration:2.5 position:CSToastPositionBottom];
+                [self.view makeToast:@"Paste was successfully submitted... The link is in your clipbloard" duration:2.5 position:CSToastPositionBottom];
                 
             });
         }

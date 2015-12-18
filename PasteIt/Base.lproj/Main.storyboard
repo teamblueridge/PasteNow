@@ -170,18 +170,27 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NAb-y1-bAc">
-                                <rect key="frame" x="20" y="206" width="303" height="80"/>
+                                <rect key="frame" x="20" y="269" width="303" height="80"/>
                                 <connections>
                                     <outlet property="dataSource" destination="k94-vv-ZyK" id="J2q-DC-lK4"/>
                                     <outlet property="delegate" destination="k94-vv-ZyK" id="jLi-72-VIf"/>
                                 </connections>
                             </pickerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eam-ec-y5p">
-                                <rect key="frame" x="20" y="305" width="303" height="275"/>
+                                <rect key="frame" x="20" y="366" width="303" height="214"/>
                                 <color key="backgroundColor" red="0.90496083619330958" green="1" blue="0.90309105049775718" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set Paste To Private" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edF-wH-hiJ">
+                                <rect key="frame" x="20" y="227" width="187" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wJM-Ge-YOn">
+                                <rect key="frame" x="249" y="222" width="51" height="31"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -196,6 +205,7 @@
                         <outlet property="authorField" destination="LS2-3n-g64" id="h6Y-em-pkF"/>
                         <outlet property="pasteContent" destination="eam-ec-y5p" id="aTf-uH-vep"/>
                         <outlet property="pickerView" destination="NAb-y1-bAc" id="zpb-Yv-07U"/>
+                        <outlet property="privateSwitch" destination="wJM-Ge-YOn" id="v2S-0u-WrG"/>
                         <outlet property="titleField" destination="iNc-Is-mVL" id="JAR-1w-wb0"/>
                     </connections>
                 </viewController>

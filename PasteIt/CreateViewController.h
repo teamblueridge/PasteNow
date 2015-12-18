@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextField *authorField;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
+@property (weak, nonatomic) IBOutlet UISwitch *privateSwitch;
 @property (weak, nonatomic) IBOutlet UITextView *pasteContent;
 
 @end
