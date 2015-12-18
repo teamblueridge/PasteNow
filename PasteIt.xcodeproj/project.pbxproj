@@ -133,13 +133,13 @@
 				B93E70441C2251F400700E31 /* CreateViewController.m */,
 				B93E70081C22426F00700E31 /* DetailViewController.h */,
 				B93E70091C22426F00700E31 /* DetailViewController.m */,
+				B93E70491C227C9800700E31 /* SettingsViewController.h */,
+				B93E70471C227C6000700E31 /* SettingsViewController.m */,
 				B93E700B1C22426F00700E31 /* Main.storyboard */,
 				B93E700E1C22426F00700E31 /* Assets.xcassets */,
 				B93E70101C22426F00700E31 /* LaunchScreen.storyboard */,
 				B93E70131C22426F00700E31 /* Info.plist */,
 				B93E6FFF1C22426F00700E31 /* Supporting Files */,
-				B93E70471C227C6000700E31 /* SettingsViewController.m */,
-				B93E70491C227C9800700E31 /* SettingsViewController.h */,
 			);
 			path = PasteIt;
 			sourceTree = "<group>";
@@ -560,6 +560,7 @@
 				B93E702E1C22426F00700E31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B93E702F1C22426F00700E31 /* Build configuration list for PBXNativeTarget "PasteItTests" */ = {
 			isa = XCConfigurationList;
@@ -568,6 +569,7 @@
 				B93E70311C22426F00700E31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B93E70321C22426F00700E31 /* Build configuration list for PBXNativeTarget "PasteItUITests" */ = {
 			isa = XCConfigurationList;
@@ -576,6 +578,7 @@
 				B93E70341C22426F00700E31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

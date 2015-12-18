@@ -18,6 +18,12 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
+    // Set border on textView
+    UIColor *borderColor = [UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0];
+    _pasteContent.layer.borderColor = borderColor.CGColor;
+    _pasteContent.layer.borderWidth = 1.0;
+    _pasteContent.layer.cornerRadius = 5.0;
+    
     // Get site URL and such if not present already
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (![userDefaults objectForKey:@"siteurl"])

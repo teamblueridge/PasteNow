@@ -43,6 +43,11 @@
         [userDefaults synchronize];
     }
     
+    if ([[userDefaults objectForKey:@"mainScreenPref"] isEqualToString:@"trending"])
+    {
+        self.title = @"Trending Pastes";
+    }
+    
     // Set local variables for site and api from user defaults
     siteURL = [userDefaults objectForKey:@"siteurl"];
     apikey = [userDefaults objectForKey:@"apikey"];
@@ -57,6 +62,14 @@
     if (!recents)
     {
         [self getPastes];
+    }
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([[userDefaults objectForKey:@"mainScreenPref"] isEqualToString:@"trending"])
+    {
+        self.title = @"Trending Pastes";
+    } else {
+        self.title = @"Recent Pastes";
     }
 }
 

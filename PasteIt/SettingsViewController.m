@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "UIView+Toast.h"
 
 @interface SettingsViewController ()
 
@@ -51,6 +52,11 @@
     }
     
     [userDefaults synchronize];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.view makeToast:@"Settings were saved sucessfully" duration:2.5 position:CSToastPositionBottom];
+        
+    });
 }
 
 @end
