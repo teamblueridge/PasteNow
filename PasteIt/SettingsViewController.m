@@ -59,4 +59,19 @@
     });
 }
 
+- (IBAction)didChangeSite:(id)sender {
+    if ([[_siteURL text] hasPrefix:@"http://"] || [[_siteURL text] hasPrefix:@"https://"])
+    {
+        // Well congrats, its a good URL
+    } else {
+        // Add HTTP since user didnt specify
+        [_siteURL setText:[NSString stringWithFormat:@"http://%@", [_siteURL text]]];
+    }
+    
+    // Remove trailing slash if it exists
+    if ([[_siteURL text] length] > 0 && [[[_siteURL text] substringFromIndex:[[_siteURL text] length] - 1] isEqualToString:@"/"]) {
+        [_siteURL setText:[[_siteURL text] substringToIndex:[[_siteURL text] length] - 1]];
+    }
+}
+
 @end

@@ -24,6 +24,12 @@
     _pasteContent.layer.borderWidth = 1.0;
     _pasteContent.layer.cornerRadius = 5.0;
     
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if (internetStatus == NotReachable) {
+        return;
+    }
+
     // Get site URL and such if not present already
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (![userDefaults objectForKey:@"siteurl"])
@@ -76,6 +82,28 @@
     ] resume];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if (internetStatus == NotReachable) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Internet Connection" message:@"Could not connect to the internet. App will not function" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:okButton];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+        
+        return;
+    }
+
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -118,6 +146,23 @@
 }
 
 - (IBAction)sendPaste:(id)sender {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if (internetStatus == NotReachable) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Internet Connection" message:@"Could not connect to the internet. App will not function" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:okButton];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+        
+        return;
+    }
+
     if ([_titleField.text isEqualToString:@""] || [_authorField.text isEqualToString:@""] || [_pasteContent.text isEqualToString:@""])
     {
         // Alert the user with async toast

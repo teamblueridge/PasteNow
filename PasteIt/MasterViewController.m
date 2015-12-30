@@ -22,8 +22,7 @@
     
     // Set the detail view controller
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
-    // Set refresh on pull down
+
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getPastes) forControlEvents:UIControlEventValueChanged];
     
@@ -59,6 +58,23 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if (internetStatus == NotReachable) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Internet Connection" message:@"Could not connect to the internet. App will not function" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:okButton];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+        
+        return;
+    }
+
     if (!recents)
     {
         [self getPastes];
@@ -79,6 +95,24 @@
 }
 
 - (void)getPastes {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if (internetStatus == NotReachable) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Internet Connection" message:@"Could not connect to the internet. App will not function" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:okButton];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.refreshControl endRefreshing];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+        
+        return;
+    }
+
     // Alert user to network usage
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     

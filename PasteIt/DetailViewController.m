@@ -47,10 +47,10 @@
                      NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                      
                      dispatch_async(dispatch_get_main_queue(), ^{
-                         self.pasteContents.text = [json objectForKey:@"raw"];
-                         self.authorLabel.text = [NSString stringWithFormat:@"Author: %@", [json objectForKey:@"name"]];
-                         [self.titleLabel setText:[json objectForKey:@"title"]];
-                         self.languageLabel.text = [NSString stringWithFormat:@"Language: %@", [json objectForKey:@"lang"]];
+                         [self.authorLabel setText:[NSString stringWithFormat:@"Author: %@", [json objectForKey:@"name"]]];
+                         [self.titleLabel setText:[NSString stringWithFormat:@"Title: %@", [json objectForKey:@"title"]]];
+                         [self.languageLabel setText:[NSString stringWithFormat:@"Language: %@", [json objectForKey:@"lang"]]];
+                         [self.pasteContents setText:[json objectForKey:@"raw"]];
                          [HUD hideUIBlockingIndicator];
                      });
                  }
@@ -61,6 +61,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Set border on textView
+    UIColor *borderColor = [UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0];
+    _pasteContents.layer.borderColor = borderColor.CGColor;
+    _pasteContents.layer.borderWidth = 1.0;
+    _pasteContents.layer.cornerRadius = 5.0;
+    
     // Do any additional setup after loading the view, typically from a nib.
     // Get site URL and such if not present already
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
