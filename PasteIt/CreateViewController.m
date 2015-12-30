@@ -147,8 +147,9 @@
 
 - (IBAction)sendPaste:(id)sender {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    Reachability *hostReachability = [Reachability reachabilityWithHostName:siteURL];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
-    if (internetStatus == NotReachable) {
+    if (internetStatus == NotReachable || hostReachability == NotReachable) {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Internet Connection" message:@"Could not connect to the internet. App will not function" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {

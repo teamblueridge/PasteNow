@@ -28,6 +28,13 @@
 }
 
 - (void)configureView {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    Reachability *hostReachability = [Reachability reachabilityWithHostName:siteURL];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if (internetStatus == NotReachable || hostReachability == NotReachable) {
+        return;
+    }
+    
     // Update the user interface for the detail item.
     if (self.pasteID) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -84,6 +91,26 @@
     
     // Configure the detail view
     [self configureView];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    Reachability *hostReachability = [Reachability reachabilityWithHostName:siteURL];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if (internetStatus == NotReachable || hostReachability == NotReachable) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Internet Connection" message:@"Could not connect to the internet. App will not function" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:okButton];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+    }
 }
 
 - (void)didReceiveMemoryWarning {
