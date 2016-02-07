@@ -44,8 +44,10 @@
                         @"1 Hour", @"1 Day", @"1 Week", @"1 Month", @"1 Year" ,nil];
     expireArrayValues = [NSArray arrayWithObjects:@"burn", @"0", @"5", @"60", @"1440", @"10080",
                          @"40320", @"483840", nil];
-    [_expirePicker reloadAllComponents];
-    [_expirePicker selectRow:1 inComponent:0 animated:NO];
+    [_expirePicker setItemList:expireArrayNames];
+    _expirePicker.selectedItem = @"Keep Forever";
+    
+    //[_expirePicker selectRow:1 inComponent:0 animated:NO];
     
     siteURL = [userDefaults objectForKey:@"siteurl"];
     apikey = [userDefaults objectForKey:@"apikey"];
@@ -69,11 +71,11 @@
                  uglyLanguages = [json allKeys];
                  
                  dispatch_async(dispatch_get_main_queue(), ^{
-                     [_languagePicker reloadAllComponents];
+                     [_languagePicker setItemList:prettyLanguages];
                      for (int i = 0; i < [uglyLanguages count]; i++)
                      {
                          if ([uglyLanguages[i] isEqualToString:@"text"])
-                             [_languagePicker selectRow:i inComponent:0 animated:NO];
+                             _languagePicker.selectedItem = @"Plain Text";
                      }
                      lang = @"text";
                      [HUD hideUIBlockingIndicator];
@@ -104,6 +106,11 @@
 
 }
 
+// Touches mean hide keyboard
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[self view] endEditing:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -115,35 +122,35 @@
 }
 
 // returns the # of rows in each component..
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
-{
-    if (pickerView == self.languagePicker) {
-        return [prettyLanguages count];
-    } else if (pickerView == self.expirePicker) {
-        return [expireArrayNames count];
-    }
-    return 0;
-}
+//- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
+//{
+//    if (pickerView == self.languagePicker) {
+//        return [prettyLanguages count];
+//    } else if (pickerView == self.expirePicker) {
+//        return [expireArrayNames count];
+//    }
+//    return 0;
+//}
 
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
-{
-    if (pickerView == self.languagePicker) {
-        return [prettyLanguages objectAtIndex:row];
-    } else if (pickerView == self.expirePicker) {
-        return [expireArrayNames objectAtIndex:row];
-    }
-    
-    return @"";
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
-{
-    if (pickerView == self.languagePicker) {
-        lang = [uglyLanguages objectAtIndex:row];
-    } else if (pickerView == self.expirePicker) {
-        expireTime = [expireArrayValues objectAtIndex:row];
-    }
-}
+//-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
+//{
+//    if (pickerView == self.languagePicker) {
+//        return [prettyLanguages objectAtIndex:row];
+//    } else if (pickerView == self.expirePicker) {
+//        return [expireArrayNames objectAtIndex:row];
+//    }
+//    
+//    return @"";
+//}
+//
+//- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
+//{
+//    if (pickerView == self.languagePicker) {
+//        lang = [uglyLanguages objectAtIndex:row];
+//    } else if (pickerView == self.expirePicker) {
+//        expireTime = [expireArrayValues objectAtIndex:row];
+//    }
+//}
 
 - (IBAction)sendPaste:(id)sender {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
@@ -163,13 +170,25 @@
         
         return;
     }
+    
+    // Set the language
+    for (int i = 0; i < [uglyLanguages count]; i++) {
+        if ([[_languagePicker selectedItem] isEqualToString:prettyLanguages[i]])
+            lang = uglyLanguages[i];
+    }
+    
+    // Set the expire time
+    for (int i = 0; i < [expireArrayValues count]; i++) {
+        if ([[_expirePicker selectedItem] isEqualToString:expireArrayNames[i]])
+            expireTime = expireArrayValues[i];
+    }
 
     if ([_titleField.text isEqualToString:@""] || [_authorField.text isEqualToString:@""] || [_pasteContent.text isEqualToString:@""])
     {
         // Alert the user with async toast
         dispatch_async(dispatch_get_main_queue(), ^{
             // toast with a specific duration and position
-            [self.view makeToast:@"Either the title, author, or paste content field was empty..." duration:2.5 position:CSToastPositionBottom];
+            [self.view makeToast:@"Either the title, author, or paste content field was empty..." duration:2.5 position:CSToastPositionCenter];
             
         });
         
@@ -214,7 +233,7 @@
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 // toast with a specific duration and position
-                [self.view makeToast:@"Your paste contains blocked words..." duration:2.5 position:CSToastPositionBottom];
+                [self.view makeToast:@"Your paste contains blocked words..." duration:2.5 position:CSToastPositionCenter];
                 
             });
         } else if ([webResponse containsString:@"copy this URL, it will become invalid on visit: "]) {
@@ -230,7 +249,7 @@
             
             // Notify the user in the UI thread
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.view makeToast:@"Paste was successfully submitted... The link is in your clipbloard. It will be removed after it is loaded on the site." duration:2.5 position:CSToastPositionBottom];
+                [self.view makeToast:@"Paste was successfully submitted... The link is in your clipbloard. It will be removed after it is loaded on the site." duration:2.5 position:CSToastPositionCenter];
                 
             });
 
@@ -241,7 +260,7 @@
             
             // Notify the user in the UI thread
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.view makeToast:@"Paste was successfully submitted... The link is in your clipbloard" duration:2.5 position:CSToastPositionBottom];
+                [self.view makeToast:@"Paste was successfully submitted... The link is in your clipbloard" duration:2.5 position:CSToastPositionCenter];
                 
             });
 

@@ -12,8 +12,13 @@
 #import "DetailViewController.h"
 #import "UIView+Toast.h"
 #import "HUD.h"
+#import "IQKeyboardManager.h"
+#import "IQKeyboardReturnKeyHandler.h"
+#import "IQDropDownTextField.h"
+#import "IQUIView+IQKeyboardToolbar.h"
 
-@interface CreateViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
+
+@interface CreateViewController : UIViewController {
     NSArray *prettyLanguages;
     NSArray *uglyLanguages;
     NSArray *expireArrayNames;
@@ -26,11 +31,12 @@
 }
 
 @property (strong, nonatomic) NSString *replyID;
+@property (weak, nonatomic) IQKeyboardReturnKeyHandler *returnKeyHandler;
 
 @property (weak,nonatomic) IBOutlet UITextField *titleField;
 @property (weak,nonatomic) IBOutlet UITextField *authorField;
-@property (weak,nonatomic) IBOutlet UIPickerView *expirePicker;
-@property (weak,nonatomic) IBOutlet UIPickerView *languagePicker;
+@property (weak,nonatomic) IBOutlet IQDropDownTextField *expirePicker;
+@property (weak,nonatomic) IBOutlet IQDropDownTextField *languagePicker;
 @property (weak,nonatomic) IBOutlet UISwitch *privateSwitch;
 @property (weak,nonatomic) IBOutlet UITextView *pasteContent;
 
