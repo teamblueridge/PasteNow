@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B93E6FFB1C22426F00700E31"
-               BuildableName = "PasteIt.app"
+               BuildableName = "Paste Now.app"
                BlueprintName = "PasteIt"
                ReferencedContainer = "container:PasteIt.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B93E6FFB1C22426F00700E31"
-            BuildableName = "PasteIt.app"
+            BuildableName = "Paste Now.app"
             BlueprintName = "PasteIt"
             ReferencedContainer = "container:PasteIt.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B93E6FFB1C22426F00700E31"
-            BuildableName = "PasteIt.app"
+            BuildableName = "Paste Now.app"
             BlueprintName = "PasteIt"
             ReferencedContainer = "container:PasteIt.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B93E6FFB1C22426F00700E31"
-            BuildableName = "PasteIt.app"
+            BuildableName = "Paste Now.app"
             BlueprintName = "PasteIt"
             ReferencedContainer = "container:PasteIt.xcodeproj">
          </BuildableReference>
