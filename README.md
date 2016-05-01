@@ -1,4 +1,4 @@
-PasteIt -- iOS Style  [![Build Status](https://travis-ci.org/teamblueridge/pasteIt-IOS.svg?branch=master)](https://travis-ci.org/teamblueridge/pasteIt-IOS)
+PasteIt -- iOS Style  [![Build Status](https://travis-ci.org/teamblueridge/PasteNow.svg?branch=master)](https://travis-ci.org/teamblueridge/PasteNow)
 ====================
 
 Currently a WIP. Will do basic things but expect major improvements
