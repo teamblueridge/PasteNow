@@ -9,22 +9,24 @@ Initally, the TeamBlueRidge paste server will be used, however, you may configur
 the app to utilize any stikkid instance.
 
 Things that work
-++++++++++++++++
-Pastes
-Replys
-Viewing recents
-Viewing popular
-Custom instances / apikeys
-Burn After Reading Posts
-Private Posts
-Custom expire times (within the given set)
-Language selection
-Copy URL to keyboard
+================
+* Pastes
+* Replys
+* Viewing recents
+* Viewing popular
+* Custom instances / apikeys
+* Burn After Reading Posts
+* Private Posts
+* Custom expire times (within the given set)
+* Language selection
+* Copy URL to keyboard
 
-Things that need some love
-++++++++++++++++++++++++++
-Encrypted pastes
+Things that need some more love
+===============================
+* Encrypted pastes
 
+Extra Info
+==========
 All contributions are welcome. The build env I use is OS X 10.11.4 targeting
 iOS 9.3.1 (Latest) with the latest version of XCode available to the public.
 TravisCI will build all patches that come in.
