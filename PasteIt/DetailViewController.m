@@ -78,15 +78,24 @@
     // Do any additional setup after loading the view, typically from a nib.
     // Get site URL and such if not present already
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if (![userDefaults objectForKey:@"siteurl"])
-    {
+    if (![userDefaults objectForKey:@"siteurl"]) {
         // Write the defaults
-        [userDefaults setObject:@"https://paste.teamblueridge.org" forKey:@"siteurl"];
-        [userDefaults setObject:@"teamblueridgepaste" forKey:@"apikey"];
+        [userDefaults setObject:@"https://paste.scratchbook.ch/" forKey:@"siteurl"];
+        [userDefaults setObject:@"deinemudda" forKey:@"apikey"];
         [userDefaults synchronize];
+    } else {
+        // Get already set values
+        siteURL= [userDefaults objectForKey:@"siteurl"];
+        apikey = [userDefaults objectForKey:@"apikey"];
+        
+        if ([siteURL isEqual:@"https://paste.teamblueridge.org"]) {
+            [userDefaults setObject:@"https://paste.scratchbook.ch/" forKey:@"siteurl"];
+            [userDefaults setObject:@"deinemudda" forKey:@"apikey"];
+            [userDefaults synchronize];
+        }
     }
     
-    siteURL = [userDefaults objectForKey:@"siteurl"];
+    siteURL= [userDefaults objectForKey:@"siteurl"];
     apikey = [userDefaults objectForKey:@"apikey"];
     
     // Configure the detail view

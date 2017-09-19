@@ -18,20 +18,24 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if (![userDefaults objectForKey:@"siteurl"])
-    {
+    if (![userDefaults objectForKey:@"siteurl"]) {
         // Write the defaults
-        [userDefaults setObject:@"https://paste.teamblueridge.org" forKey:@"siteurl"];
-        [userDefaults setObject:@"teamblueridgepaste" forKey:@"apikey"];
+        [userDefaults setObject:@"https://paste.scratchbook.ch/" forKey:@"siteurl"];
+        [userDefaults setObject:@"deinemudda" forKey:@"apikey"];
         [userDefaults synchronize];
     } else {
         // Get already set values
         [_siteURL setText: [userDefaults objectForKey:@"siteurl"]];
         [_apiKey setText: [userDefaults objectForKey:@"apikey"]];
+        
+        if ([_siteURL isEqual:@"https://paste.teamblueridge.org"]) {
+            [userDefaults setObject:@"https://paste.scratchbook.ch/" forKey:@"siteurl"];
+            [userDefaults setObject:@"deinemudda" forKey:@"apikey"];
+            [userDefaults synchronize];
+        }
     }
     
-    if (![userDefaults objectForKey:@"mainScreenPref"])
-    {
+    if (![userDefaults objectForKey:@"mainScreenPref"]) {
         [userDefaults setObject:@"recent" forKey:@"mainScreenPref"];
         [userDefaults synchronize];
     } else {
